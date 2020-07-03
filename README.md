@@ -71,8 +71,6 @@ We have precreated a [GitHub Workflow file](/.github/workflows/deploy_infra.yml)
 
 You need to update [this workflow action](https://github.com/mlopstemplates/aml_infra/blob/master/.github/workflows/deploy_infra.yml#L19) `resource_group` parameter that you have used when generating the azure credentials. We also need GH PAT token with repo access so that we can trigger a GH workflow when the training is completed on Azure Machine Learning. You can modify the default workspace and compute names used in the action. 
 
-Hence forth update other files "workspace.json" , "compute.json" to have samve values as you provided in the arm template file. 
-
 Once you save your changes to the file, the predefined GitHub workflow that trains and deploys a model on Azure Machine Learning gets triggered. Check the actions tab to view if your actions have successfully run.
 
 <p align="center">
