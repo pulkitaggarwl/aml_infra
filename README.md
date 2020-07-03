@@ -74,7 +74,7 @@ Please follow [this link](https://help.github.com/en/actions/configuring-and-man
 
 We have precreated a [GitHub Workflow file](/.github/workflows/deploy_infra.yml) that does the infrastructure creation, trains the model and on successful training completions triggers another workflow that deploys the model. 
 
-You need to update [this workflow action](https://github.com/mlopstemplates/aml_infra/blob/master/.github/workflows/deploy_infra.yml#L19) `resource_group` parameter that you have used when generating the azure credentials.. You can modify the default workspace and compute names used in the action. 
+You need to update [this workflow action](https://github.com/mlopstemplates/aml_infra/blob/master/.github/workflows/deploy_infra.yml#L19) `resource_group` parameter that you have used when generating the azure credentials. You can modify the default workspace used in the action. Also, make sure your workspace name and resource group name in [workspace.json](/.cloud/.azure/workspace.json) is same as that in workflow
 
 Once you save your changes to the file, the predefined GitHub workflow that trains and deploys a model on Azure Machine Learning gets triggered. Check the actions tab to view if your actions have successfully run.
 
