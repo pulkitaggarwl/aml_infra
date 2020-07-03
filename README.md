@@ -30,7 +30,8 @@ To get started with ML Ops, simply create a new repo based off this template, by
 
 ### 3. Setting up the required secrets
 
-To allow GitHub Actions to access Azure, an [Azure service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals) needs to be generated. Just go to the Azure Portal to find the details of your resource group. Then start the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer and execute the following command to generate the required credentials:
+#### To allow GitHub Actions to access Azure
+An [Azure service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals) needs to be generated. Just go to the Azure Portal to find the details of your resource group. Then start the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer and execute the following command to generate the required credentials:
 
 ```sh
 # Replace {service-principal-name}, {subscription-id} and {resource-group} with your 
@@ -63,19 +64,24 @@ To do so, click on the Settings tab in your repository, then click on Secrets an
 
 Please follow [this link](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) for more details. 
 
-
+#### To Allow Azure to trigger a GitHub Workflow
+ We also need GH PAT token with repo access so that we can trigger a GH workflow when the training is completed on Azure Machine Learning. Add the PAT token with as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `PATTOKEN` in your GitHub repository:
+ <p align="center">
+  <img src="docs/images/pat_secret.png" alt="GitHub Template repository" width="700"/>
+</p>
 
 ### 4. Define your workspace parameters
 
 We have precreated a [GitHub Workflow file](/.github/workflows/deploy_infra.yml) that does the infrastructure creation, trains the model and on successful training completions triggers another workflow that deploys the model. 
 
-You need to update [this workflow action](https://github.com/mlopstemplates/aml_infra/blob/master/.github/workflows/deploy_infra.yml#L19) `resource_group` parameter that you have used when generating the azure credentials. We also need GH PAT token with repo access so that we can trigger a GH workflow when the training is completed on Azure Machine Learning. You can modify the default workspace and compute names used in the action. 
+You need to update [this workflow action](https://github.com/mlopstemplates/aml_infra/blob/master/.github/workflows/deploy_infra.yml#L19) `resource_group` parameter that you have used when generating the azure credentials.. You can modify the default workspace and compute names used in the action. 
 
 Once you save your changes to the file, the predefined GitHub workflow that trains and deploys a model on Azure Machine Learning gets triggered. Check the actions tab to view if your actions have successfully run.
 
 <p align="center">
   <img src="docs/images/actions_tab.png" alt="GitHub Actions Tab" width="700"/>
 </p>
+
 
 ### 5. Review 
 The above commit would trigger a workflow run and would auto-trigger another [GH Workflow YML]( /.github/workflows/deploy.yml ) which deploys the trained model on an Azure Kubernetes Cluster. The log outputs of your action will provide URLs for you to view the resources that have been created in AML. Alternatively, you can visit the [Machine Learning Studio](https://ml.azure.com/) to view the progress of your runs, etc. For more details, read the documentation below.
