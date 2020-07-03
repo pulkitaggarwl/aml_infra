@@ -24,7 +24,7 @@ jobs:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           armtemplate_file: "arm_deploy.json"
           armtemplateparams_file: "arm_deploy.params.json"
-          resource_group: "testgroup"
+          resource_group: "azmltemplate"
           mapped_params: '{"patToken":"${{secrets.PATTOKEN}}", "computeName":"mycluster", "workspaceName":"amlconfigureTest" }'
 
     # now send for training.
