@@ -25,7 +25,7 @@ jobs:
           armtemplate_file: "arm_deploy.json"
           armtemplateparams_file: "arm_deploy.params.json"
           resource_group: "azmltemplate"
-          mapped_params: '{"patToken":"${{secrets.PATTOKEN}}", "computeName":"mycluster", "workspaceName":"amlconfigureTest" }'
+          mapped_params: '{"patToken":"${{secrets.PATTOKEN}}", "computeName":"mycluster", "workspaceName":"myworkspace" }'
 
     # now send for training.
     # Connect or Create the Azure Machine Learning Workspace
